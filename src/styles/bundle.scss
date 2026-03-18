@@ -1,0 +1,484 @@
+@use "responsive" as *;
+
+@use "./fonts.scss" as *;
+@use "../../node_modules/normalize.css/normalize.css" as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: #ffffff;
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: "Roboto", sans-serif;
+}
+
+.shft-container {
+  width: 1248px;
+  max-width: 100%;
+  padding: 0 24px;
+  margin-right: auto;
+  margin-left: auto;
+  box-sizing: border-box;
+}
+
+@media not all and (min-width: 1280px) {
+  .shft-container {
+    width: 1024px;
+  }
+}
+
+@media not all and (min-width: 1024px) {
+  .shft-container {
+    width: 768px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media not all and (min-width: 768px) {
+  .shft-container {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media not all and (min-width: 360px) {
+  .shft-container {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+
+.shft-modal {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  max-width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  z-index: 200;
+  background: #fff;
+  padding: 40px 45px;
+  width: 560px;
+  overflow: auto;
+  box-sizing: border-box;
+  max-height: 100%;
+  box-shadow:
+    0 0 30px rgba(0, 0, 0, 0.4),
+    0 0 8px rgba(0, 0, 0, 0.2);
+  transition: all ease 0.3s;
+
+  @include mobile {
+    padding: 20px 25px;
+  }
+
+  &._opened {
+    transform: translate(-50%, -50%) scale(1);
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.shft-modal__close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 48px;
+  height: 48px;
+  background: none;
+  border: none;
+  z-index: 20;
+  padding: 0;
+  cursor: pointer;
+
+  @include mobile {
+    // В исходнике тут был padding: 20px 25px, что странно для абсолютной кнопки 48x48.
+    // Оставил как есть, но возможно, стоило менять right/top или width/height.
+    padding: 20px 25px;
+    right: 0;
+    top: 0;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    width: 40%;
+    height: 2px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: #b6b6b6;
+    transform-origin: 0 0;
+  }
+
+  &::before {
+    transform: rotate(-45deg) translate(-50%, -50%);
+  }
+
+  &::after {
+    transform: rotate(45deg) translate(-50%, -50%);
+  }
+
+  &:hover {
+    background: #b6b6b6;
+
+    &::before,
+    &::after {
+      background: #ffffff;
+    }
+  }
+}
+
+.shft-modal__title {
+  font-size: 36px;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: #000000;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.shft-modal__body {
+  position: relative;
+}
+
+.shft-form {
+  position: relative;
+}
+
+.shft-form__row {
+  margin-top: 25px;
+}
+
+.shft-form__submit {
+  width: 100%;
+}
+
+.shft-form__notice {
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.25;
+  letter-spacing: 0.025em;
+
+  a {
+    text-decoration: underline;
+    color: inherit;
+  }
+}
+
+.shft-form__approve {
+  font-size: 15px;
+  line-height: 1.25;
+  display: flex;
+
+  a {
+    text-decoration: underline;
+    color: inherit;
+  }
+
+  input {
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5em;
+  }
+}
+
+.shft-submit {
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 59px;
+  text-transform: uppercase;
+  padding: 0 40px;
+  max-width: 100%;
+  border: 1px solid rgb(250, 216, 116);
+  background: rgb(250, 216, 116);
+  color: #1f2130;
+  display: inline-block;
+  text-decoration: none;
+  white-space: nowrap;
+  letter-spacing: 0.015em;
+  box-shadow:
+    0px 0px 12px 0px rgba(255, 213, 122, 0.4),
+    inset 0px 0px 12px 0px rgba(255, 213, 122, 0.4);
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
+
+  &:hover {
+    color: #1f2130;
+    background: rgb(255, 210, 74);
+  }
+}
+
+.shft-footer {
+  background: url("../images/bg-pattern-footer.png");
+  padding: 60px 0 30px;
+}
+
+.shft-footer-grid {
+  display: flex;
+  justify-content: space-between;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.shft-footer-first-cell {
+  @include mobile {
+    width: 100%;
+    order: 30;
+  }
+}
+
+.shft-footer-second-cell {
+  @include mobile {
+    order: 10;
+  }
+}
+
+.shft-footer-third-cell {
+  @include mobile {
+    order: 20;
+  }
+}
+
+.shft-footer__first {
+  max-width: 280px;
+
+  @include mobile {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+}
+
+.shft-footer__logo {
+  display: block;
+  margin: -14px auto 11px;
+  width: 75px;
+  height: 52px;
+}
+
+.shft-footer__sitename {
+  text-shadow: 0.5px 0.9px 1px rgba(0, 0, 0, 0.8);
+  font-family: "times new roman", serif;
+  font-size: 24px;
+  color: #e0c48f;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: -1.5px;
+  text-align: center;
+  margin: 10px 0 7px;
+}
+
+.shft-footer__behalf {
+  text-shadow: 0.5px 0.9px 0 rgba(0, 0, 0, 0.35);
+  color: #fdf7d3;
+  font-family: "times new roman", serif;
+  font-size: 18px;
+  line-height: 1;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: -1px;
+}
+
+.shft-footer__copyright {
+  color: white;
+  font-size: 14px;
+  margin: 50px auto;
+
+  @include mobile {
+    margin: 25px auto;
+    text-align: center;
+  }
+}
+
+.shft-footer__creator {
+  position: relative;
+  padding-left: 150px;
+  display: block;
+  font-size: 14px;
+  color: #ffffff;
+  box-sizing: border-box;
+  opacity: 0.8;
+  text-decoration: none;
+
+  @include mobile {
+    max-width: 290px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &:hover {
+    opacity: 1;
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 136px;
+    height: 35px;
+    left: 0;
+    top: 50%;
+    margin-top: -18px;
+    background: url("../images/creator.png") no-repeat 50% 50%;
+  }
+}
+
+.shft-footer__menu {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 40px;
+
+  @include mobile {
+    text-align: center;
+  }
+
+  li {
+    list-style: none;
+    margin-bottom: 20px;
+
+    a {
+      color: white;
+      font-size: 18px;
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: none;
+        background-color: #5c5c5c;
+      }
+    }
+  }
+}
+
+.shft-footer__contacts {
+  color: white;
+  font-size: 18px;
+
+  @include mobile {
+    text-align: center;
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  span {
+    display: block;
+    margin: 10px 0;
+  }
+}
+
+.shft-footer-socials {
+  margin: 15px 0;
+  display: flex;
+  gap: 4px;
+
+  @include mobile {
+    justify-content: center;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border: 1px solid #fff;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    font-size: 16px;
+    opacity: 0.6;
+    border-radius: 100%;
+
+    &:hover {
+      color: #fff;
+      opacity: 1;
+    }
+
+    svg {
+      fill: currentColor;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}
+
+.shft-footer__buttons {
+  margin: 30px -10px;
+
+  button,
+  a {
+    display: inline-block;
+    color: white;
+    font-size: 18px;
+    padding: 0 28px;
+    line-height: 35px;
+    border-radius: 20px;
+    border: 1px solid #fff;
+    margin: 10px;
+    background: transparent;
+    text-decoration: none;
+
+    &:hover {
+      color: #fff;
+      text-decoration: none;
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+}
+
+.shft-input {
+  min-height: var(--ui-o-input-height);
+  box-sizing: border-box;
+  padding-left: 16px;
+  padding-top: 0;
+  padding-right: top;
+  padding-bottom: 0;
+  font-size: 16px;
+  font-family: inherit;
+  color: #333;
+  border: 1px solid #c7c5c1;
+  border-radius: 0;
+  display: block;
+  width: 100%;
+  height: 44px;
+  background: #f4f4f5;
+}
+
+.shft-textarea {
+  box-sizing: border-box;
+  padding-left: 16px;
+  padding-top: 16px;
+  padding-right: 16px;
+  padding-bottom: 16px;
+  font-size: 16px;
+  font-family: inherit;
+  color: #333;
+  border: 1px solid #c7c5c1;
+  border-radius: 0;
+  display: block;
+  width: 100%;
+  height: calc(44px + 44px + 16px + 16px);
+  max-width: 100%;
+  background: #f4f4f5;
+}
