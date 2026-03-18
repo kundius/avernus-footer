@@ -266,32 +266,32 @@ body {
 
 .shft-footer__logo {
   display: block;
-  margin: -14px auto 11px;
+  margin: -12px auto 12px;
   width: 75px;
   height: 52px;
 }
 
 .shft-footer__sitename {
   text-shadow: 0.5px 0.9px 1px rgba(0, 0, 0, 0.8);
-  font-family: "times new roman", serif;
+  font-family: "PT Serif", serif;
   font-size: 24px;
   color: #e0c48f;
   text-transform: uppercase;
   line-height: 1;
-  letter-spacing: -1.5px;
   text-align: center;
-  margin: 10px 0 7px;
+  margin: 8px 0 0;
+  letter-spacing: 0.025em;
 }
 
 .shft-footer__behalf {
   text-shadow: 0.5px 0.9px 0 rgba(0, 0, 0, 0.35);
   color: #fdf7d3;
-  font-family: "times new roman", serif;
-  font-size: 18px;
+  font-family: "PT Serif", serif;
+  font-size: 21px;
   line-height: 1;
   text-transform: uppercase;
   text-align: center;
-  letter-spacing: -1px;
+  letter-spacing: 0.025em;
 }
 
 .shft-footer__copyright {
